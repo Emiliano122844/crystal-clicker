@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <title>Crystal Clicker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    
+<div class="game">
+
+    <header class="game-header">
+        <h1>💎 Crystal Clicker</h1>
+        <p>Твои кристаллы:</p>
+        <div id="balance">0</div>
+    </header>
+
+    <div class="game-layout">
+
+        <!-- ЛЕВАЯ КОЛОНКА -->
+        <aside class="left-column">
+
+            <section class="panel player-level">
+                <h2>⭐ Уровень игрока: <span id="level">1</span></h2>
+                <p>Опыт: <span id="xp">0</span> / <span id="xpNeeded">100</span></p>
+                <div class="xp-bar">
+                    <div id="xpProgress"></div>
+                </div>
+            </section>
+
+            <section class="panel player-stats">
+                <h2>📊 Статистика игрока</h2>
+                <p>💎 Всего добыто: <span id="totalCrystals">0</span></p>
+                <p>👆 Всего кликов: <span id="totalClicks">0</span></p>
+                <p>⛏️ Куплено шахт: <span id="totalMines">0</span></p>
+            </section>
+
+            <section class="panel daily-reward">
+                <h2>🎁 Ежедневная награда</h2>
+                <p>Забирай 100 кристаллов каждый день!</p>
+                <button id="dailyRewardButton">Забрать награду 💎</button>
+            </section>
+
+        </aside>
+
+        <!-- ЦЕНТРАЛЬНАЯ КОЛОНКА -->
+        <main class="center-column">
+
+            <section class="panel mining-panel">
+                <h2>⛏️ Добыча кристаллов</h2>
+
+                <button id="clickButton">Добывать кристаллы 💎</button>
+
+                <p>За один клик: <span id="perClick">1</span></p>
+                <p>Автоматическая добыча: <span id="perSecond">0</span> 💎/сек.</p>
+            </section>
+
+            <section class="depth-section">
+                <h2>🌍 Исследование глубин</h2>
+
+                <p>Текущая глубина:</p>
+                <h3 id="currentDepth">1 уровень</h3>
+
+                <p id="depthDescription">
+                    Старая заброшенная шахта. Здесь начинается твоя история.
+                </p>
+                <p class="depth-bonus">
+    ⚡ Бонус глубины: <span id="depthBonus">0%</span>
+</p>
+
+                <div class="rare-crystals">
+                    <p>✨ Редкие кристаллы</p>
+                    <h3 id="rareCrystals">0</h3>
+                    <p>🧲 За находку: <span id="rareFindAmount">1</span> ✨</p>
+                </div>
+                <p>🎯 Шанс найти редкий кристалл: 
+    <span id="rareChanceDisplay">0%</span>
+</p>
+
+                <div id="finalRareHint" style="display: none;">
+    <p>🏆 Стоимость открытия Бездны вечности:</p>
+    <p>💎 Обычные кристаллы: <span id="finalCrystalCost">5000000</span></p>
+    <p>✨ Редкие кристаллы: <span id="finalRareCost">15000</span></p>
+</div>
+
+               <p>
+    💎 Прогресс накопления:
+    <span id="depthProgress">0</span> /
+    <span id="depthCost">1000</span>
+</p>
+
+<button id="exploreDepthButton">
+    Открыть следующую глубину
+</button>
+            </section>
+            <section class="panel final-goal" id="finalGoal">
+                <h2>🏆 Главная цель</h2>
+                <p>Доберись до 18-й глубины и открой Бездну вечности!</p>
+                <p>Прогресс: <span id="finalProgress">1</span> / 18</p>
+            </section>
+        </main>
+
+        <!-- ПРАВАЯ КОЛОНКА -->
+        <aside class="right-column">
+
+            <section class="rare-shop">
+                <h2>✨ Магазин редких технологий</h2>
+                <p>Используй редкие кристаллы для открытия древних технологий.</p>
+
+                <div class="upgrade">
+                    <div>
+                        <strong>🍀 Удача шахтёра</strong>
+                        <p>Увеличивает шанс найти редкий кристалл на +2%</p>
+                        <p>Цена: <span id="luckCost">10</span> ✨</p>
+                        <p>Уровень технологии: <span id="luckLevel">0</span></p>
+                    </div>
+                    <button id="luckButton">Купить</button>
+                </div>
+
+                <div class="upgrade">
+                    <div>
+                        <strong>🧲 Магнит кристаллов</strong>
+                        <p>Увеличивает количество редких кристаллов за находку на +1</p>
+                        <p>Цена: <span id="magnetCost">15</span> ✨</p>
+                        <p>Уровень технологии: <span id="magnetLevel">0</span></p>
+                    </div>
+                    <button id="magnetButton">Купить</button>
+                </div>
+                <div class="upgrade">
+    <div>
+        <strong>🔮 Магия древних</strong>
+        <p>Увеличивает добычу обычных кристаллов на +25% за уровень</p>
+        <p>Цена: <span id="ancientMagicCost">100</span> ✨</p>
+        <p>Уровень технологии: <span id="ancientMagicLevel">0</span></p>
+    </div>
+    <button id="ancientMagicButton">Купить</button>
+</div>
+<div class="upgrade">
+    <div>
+        <strong>🧪 Алхимия кристаллов</strong>
+        <p>Увеличивает шанс найти редкие кристаллы на +3% за уровень</p>
+        <p>Цена: <span id="crystalAlchemyCost">150</span> ✨</p>
+        <p>Уровень технологии: <span id="crystalAlchemyLevel">0</span></p>
+    </div>
+    <button id="crystalAlchemyButton">Купить</button>
+</div>
+            </section>
+
+            <section class="shop">
+                <h2>🛒 Магазин улучшений</h2>
+
+                <div class="upgrade">
+                    <div>
+                        <strong>💪 Сильная рука</strong>
+                        <p>Увеличивает доход за клик на +1</p>
+                        <p>Цена: <span id="upgradeCost">10</span> 💎</p>
+                        <p>Уровень: <span id="upgradeLevel">0</span></p>
+                    </div>
+                    <button id="upgradeButton">Купить</button>
+                </div>
+
+                <div class="upgrade">
+                    <div>
+                        <strong>⛏️ Автоматическая шахта</strong>
+                        <p>Добывает кристаллы каждую секунду</p>
+                        <p>Цена: <span id="mineCost">50</span> 💎</p>
+                    </div>
+                    <button id="mineButton">Купить</button>
+                </div>
+
+                <div class="upgrade">
+                    <div>
+                        <strong>⚡ Магическая кирка</strong>
+                        <p>Увеличивает доход за клик на +5</p>
+                        <p>Цена: <span id="magicPickaxeCost">500</span> 💎</p>
+                        <p>Уровень: <span id="magicPickaxeLevel">0</span></p>
+                    </div>
+                    <button id="magicPickaxeButton">Купить</button>
+                </div>
+
+                <div class="upgrade">
+                    <div>
+                        <strong>⛏️ Мощная шахта</strong>
+                        <p>Добывает дополнительные 5 кристаллов в секунду</p>
+                        <p>Цена: <span id="powerMineCost">2500</span> 💎</p>
+                        <p>Уровень: <span id="powerMineLevel">0</span></p>
+                    </div>
+                    <button id="powerMineButton">Купить</button>
+                </div>
+
+                <div class="upgrade">
+                    <div>
+                        <strong>🔮 Кристальный усилитель</strong>
+                        <p>Удваивает доход за клик (одноразовая покупка)</p>
+                        <p>Цена: <span id="crystalBoostCost">10000</span> 💎</p>
+                    </div>
+                    <button id="crystalBoostButton">Купить</button>
+                </div>
+
+                <div class="upgrade">
+                    <div>
+                        <strong>🏭 Кристальная фабрика</strong>
+                        <p>Добывает дополнительные 25 кристаллов в секунду</p>
+                        <p>Цена: <span id="crystalFactoryCost">50000</span> 💎</p>
+                        <p>Уровень: <span id="crystalFactoryLevel">0</span></p>
+                    </div>
+                    <button id="crystalFactoryButton">Купить</button>
+                </div>
+
+                <div class="upgrade" id="stoneDrillUpgrade" style="display: none;">
+                    <div>
+                        <strong>🪨 Каменный бур</strong>
+                        <p>Добывает дополнительные 10 кристаллов в секунду</p>
+                        <p>Цена: <span id="stoneDrillCost">5000</span> 💎</p>
+                    </div>
+                    <button id="stoneDrillButton">Купить</button>
+                </div>
+
+            </section>
+
+        </aside>
+
+    </div>
+
+    <!-- ДОСТИЖЕНИЯ -->
+    <section class="achievements">
+        <h2>🏆 Достижения</h2>
+
+        <div class="achievement" id="achievement1">
+            <strong>🥉 Первый кристалл</strong>
+            <p>Добыть первый кристалл</p>
+            <span>Награда: 5 💎</span>
+        </div>
+
+        <div class="achievement" id="achievement2">
+            <strong>🥈 Начинающий шахтёр</strong>
+            <p>Накопить 100 кристаллов</p>
+            <span>Награда: 25 💎</span>
+        </div>
+
+        <div class="achievement" id="achievement3">
+            <strong>🥇 Богатый шахтёр</strong>
+            <p>Накопить 1000 кристаллов</p>
+            <span>Награда: 100 💎</span>
+        </div>
+
+        <div class="achievement" id="achievement4">
+            <strong>⛏️ Промышленник</strong>
+            <p>Купить 5 автоматических шахт</p>
+            <span>Награда: 50 💎</span>
+        </div>
+    </section>
+
+</div>
+
+    
+    <div id="victoryModal" class="victory-modal">
+    <div class="victory-content">
+        <h1>🏆 ПОБЕДА!</h1>
+        <h2>Ты покорил все глубины!</h2>
+        <p>Бездна вечности теперь принадлежит тебе!</p>
+
+        <p>💎 Твои кристаллы: <span id="victoryCrystals">0</span></p>
+        <p>✨ Редкие кристаллы: <span id="victoryRare">0</span></p>
+
+        <button id="continueGameButton">
+            Продолжить игру
+        </button>
+    </div>
+</div>
+<script src="game.js"></script>
+</body>
+</html>

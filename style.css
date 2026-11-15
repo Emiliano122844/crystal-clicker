@@ -1,0 +1,1219 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #101827, #1c3150);
+    color: white;
+    font-family: Arial, sans-serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 30px 0;
+}
+
+.game {
+    width: 95%;
+    max-width: 1150px;
+    padding: 35px;
+    text-align: center;
+
+    background: #1c293d;
+    border: 1px solid #354b69;
+    border-radius: 24px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+}
+
+h1 {
+    font-size: 30px;
+    margin-top: 0;
+}
+
+#balance {
+    font-size: 48px;
+    font-weight: bold;
+    color: #65c7ff;
+    margin: 15px 0 25px;
+}
+
+#clickButton {
+    width: 100%;
+    padding: 20px;
+    border: none;
+    border-radius: 15px;
+
+    background: linear-gradient(135deg, #3589e8, #6558e8);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: transform 0.15s, filter 0.15s;
+}
+
+#clickButton:hover {
+    filter: brightness(1.15);
+}
+
+#clickButton:active {
+    transform: scale(0.96);
+}
+
+p {
+    color: #bdcce0;
+}
+
+.shop {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.shop h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.upgrade {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 15px;
+    background: #293951;
+    border-radius: 12px;
+}
+
+.upgrade p {
+    font-size: 13px;
+    margin: 7px 0;
+}
+
+#upgradeButton,
+#mineButton {
+    padding: 12px 16px;
+    border: none;
+    border-radius: 10px;
+    background: #278b68;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#upgradeButton:disabled,
+#mineButton:disabled {
+    background: #526174;
+    cursor: not-allowed;
+}
+
+#upgradeButton:disabled {
+    background: #526174;
+    cursor: not-allowed;
+}
+/* Анимация полученных кристаллов */
+#clickButton {
+    position: relative;
+    overflow: visible;
+}
+
+.float-number {
+    position: absolute;
+    left: 50%;
+    top: -10px;
+    transform: translateX(-50%);
+    color: #65c7ff;
+    font-size: 20px;
+    font-weight: bold;
+    pointer-events: none;
+    animation: floatUp 0.8s ease-out forwards;
+    z-index: 10;
+}
+
+@keyframes floatUp {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, 0) scale(0.8);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -55px) scale(1.2);
+    }
+}
+/* Раздел достижений */
+.achievements {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.achievements h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.achievement {
+    padding: 14px;
+    margin-bottom: 10px;
+    background: #293951;
+    border: 1px solid #405570;
+    border-radius: 12px;
+    opacity: 0.55;
+}
+
+.achievement p {
+    font-size: 13px;
+    margin: 7px 0;
+}
+
+.achievement span {
+    color: #65c7ff;
+    font-size: 13px;
+}
+
+.achievement.completed {
+    opacity: 1;
+    border-color: #278b68;
+    background: #234638;
+}
+.player-level p {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.xp-bar {
+    width: 100%;
+    height: 12px;
+    background: #172438;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#xpProgress {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #3589e8, #65c7ff);
+    border-radius: 10px;
+    transition: width 0.3s;
+}
+.player-stats {
+    margin-top: 20px;
+    padding: 18px;
+    background: #293951;
+    border: 1px solid #405570;
+    border-radius: 15px;
+    text-align: left;
+}
+
+.player-stats h2 {
+    color: #65c7ff;
+    font-size: 18px;
+    margin-top: 0;
+}
+
+.player-stats p {
+    font-size: 14px;
+    margin: 10px 0;
+}
+.daily-reward {
+    margin-top: 20px;
+    padding: 18px;
+    background: #35452f;
+    border: 1px solid #6b914d;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.daily-reward h2 {
+    color: #b8ed79;
+    font-size: 18px;
+    margin-top: 0;
+}
+
+.daily-reward p {
+    font-size: 14px;
+}
+
+#dailyRewardButton {
+    width: 100%;
+    padding: 12px;
+    background: #78a943;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+#dailyRewardButton:disabled {
+    background: #59634f;
+    cursor: not-allowed;
+}
+/* Оформление кнопок улучшений */
+.upgrade button {
+    background: linear-gradient(135deg, #20c96b, #119447);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    min-width: 100px;
+}
+
+.upgrade button:hover {
+    transform: scale(1.05);
+   background: linear-gradient(135deg, #35e681, #16ad55);
+}
+
+.upgrade button:disabled {
+    background: #596579;
+    color: #aeb8c8;
+    cursor: not-allowed;
+    transform: none;
+    opacity: 0.7;
+}
+/* Исследование глубин */
+.depth-section {
+    background: linear-gradient(135deg, #202f49, #293e5c);
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+    text-align: center;
+    border: 1px solid #41628a;
+}
+
+.depth-section h2 {
+    color: #65b8ff;
+    margin-bottom: 15px;
+}
+
+.depth-section h3 {
+    color: #45e69a;
+    font-size: 28px;
+    margin: 10px 0;
+}
+
+.depth-section p {
+    color: #d5e2f3;
+    margin: 8px 0;
+}
+
+.depth-section button {
+    background: linear-gradient(135deg, #20c96b, #119447);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 12px;
+}
+
+.depth-section button:hover {
+    background: linear-gradient(135deg, #35e681, #16ad55);
+    transform: scale(1.03);
+}
+#depthDescription {
+    color: #a9c8e8;
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 500px;
+    margin: 10px auto 15px;
+    font-style: italic;
+}
+/* Уведомление о редком кристалле */
+.rare-notification {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    background: linear-gradient(135deg, #7137c8, #a855f7);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-weight: bold;
+    border: 1px solid rgba(220, 180, 255, 0.6);
+    box-shadow:
+        0 0 15px rgba(168, 85, 247, 0.5),
+        0 0 35px rgba(168, 85, 247, 0.25);
+    z-index: 9999;
+    animation: rareAppear 0.45s ease;
+}
+
+@keyframes rareAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.8);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translateY(5px) scale(1.05);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+/* Магазин редких технологий */
+.rare-shop {
+    background: linear-gradient(135deg, #30204d, #49266b);
+    border: 1px solid #a855f7;
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
+}
+
+.rare-shop h2 {
+    color: #d8a5ff;
+}
+
+.rare-shop > p {
+    color: #d9c4ef;
+    font-size: 14px;
+}
+
+.rare-shop .upgrade {
+    background: rgba(20, 12, 35, 0.55);
+    border: 1px solid #7543a5;
+    text-align: left;
+}
+
+.rare-shop button {
+    background: linear-gradient(135deg, #a855f7, #7137c8);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.rare-shop button:disabled {
+    background: #596579;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+/* Адаптация под маленькие экраны */
+@media (max-width: 600px) {
+    .game {
+        width: 96%;
+        padding: 20px 12px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    #balance {
+        font-size: 36px;
+    }
+
+    .upgrade {
+        flex-wrap: wrap;
+    }
+
+    .upgrade button {
+        width: 100%;
+    }
+}
+
+/* ==================================
+   НОВАЯ КОМПОНОВКА ИГРЫ
+================================== */
+
+body {
+    display: block;
+    padding: 25px;
+}
+
+.game {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+.game-header {
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 25px;
+    background: linear-gradient(135deg, #243c5c, #302b62);
+    border-radius: 18px;
+}
+
+.game-header h1 {
+    margin-bottom: 10px;
+}
+
+.game-header p {
+    margin-bottom: 0;
+}
+
+.game-layout {
+    display: grid;
+    grid-template-columns: 0.9fr 1.2fr 1.3fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.left-column,
+.center-column,
+.right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+}
+
+.panel {
+    padding: 18px;
+    background: #293951;
+    border: 1px solid #405570;
+    border-radius: 15px;
+}
+
+.panel h2 {
+    font-size: 18px;
+}
+
+.mining-panel {
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.mining-panel #clickButton {
+    min-height: 100px;
+    font-size: 23px;
+    margin: 20px 0;
+}
+
+.shop,
+.rare-shop {
+    margin-top: 0;
+}
+
+.shop h2,
+.rare-shop h2 {
+    text-align: center;
+}
+
+.shop .upgrade,
+.rare-shop .upgrade {
+    margin-bottom: 12px;
+}
+
+.achievements {
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.achievements h2 {
+    grid-column: 1 / -1;
+    text-align: center;
+}
+
+.achievement {
+    margin-bottom: 0;
+}
+
+.player-stats,
+.daily-reward {
+    margin-top: 0;
+}
+
+.depth-section {
+    margin-top: 0;
+}
+
+/* Планшеты */
+@media (max-width: 1050px) {
+    .game-layout {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .right-column {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+    }
+
+    .achievements {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Телефоны */
+@media (max-width: 650px) {
+    body {
+        padding: 10px;
+    }
+
+    .game {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .game-layout,
+    .right-column {
+        grid-template-columns: 1fr;
+    }
+
+    .right-column {
+        grid-column: auto;
+    }
+
+    .achievements {
+        grid-template-columns: 1fr;
+    }
+
+    .game-header h1 {
+        font-size: 24px;
+    }
+}
+
+
+.left-column {
+    background: rgba(0, 150, 255, 0.08);
+}
+
+.center-column {
+    background: rgba(0, 255, 100, 0.08);
+}
+
+.right-column {
+    background: rgba(180, 0, 255, 0.08);
+}
+/* Дополнительное игровое оформление */
+
+.game {
+    border-color: #49658e;
+    box-shadow:
+        0 15px 50px rgba(0, 0, 0, 0.4),
+        0 0 25px rgba(65, 137, 232, 0.08);
+}
+
+.game-header {
+    border: 1px solid rgba(130, 150, 255, 0.2);
+    box-shadow: 0 8px 30px rgba(101, 88, 232, 0.15);
+}
+
+.panel,
+.depth-section,
+.rare-shop,
+.achievement,
+.upgrade {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.panel:hover,
+.depth-section:hover,
+.rare-shop:hover,
+.achievement:hover,
+.upgrade:hover {
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.2);
+}
+
+#clickButton {
+    box-shadow: 0 5px 20px rgba(101, 88, 232, 0.25);
+}
+
+#clickButton:hover {
+    box-shadow: 0 5px 28px rgba(101, 88, 232, 0.5);
+}
+button {
+    transition: filter 0.2s ease, transform 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+button:not(:disabled):hover {
+    filter: brightness(1.12);
+}
+
+button:not(:disabled):active {
+    transform: scale(0.97);
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
+/* Адаптация новой компоновки */
+
+@media (max-width: 1100px) {
+    .game-layout {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .right-column {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 700px) {
+    body {
+        padding: 10px;
+    }
+
+    .game {
+        padding: 15px;
+    }
+
+    .game-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .right-column {
+        grid-column: auto;
+        display: flex;
+    }
+
+    .achievements {
+        grid-template-columns: 1fr;
+    }
+
+    .upgrade {
+        flex-wrap: wrap;
+    }
+
+    .upgrade button {
+        width: 100%;
+    }
+}
+/* Атмосферная панель добычи */
+
+.mining-panel {
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(65, 137, 232, 0.2),
+            transparent 65%
+        ),
+        linear-gradient(145deg, #293e5e, #202b48);
+    border: 1px solid #5275a5;
+    box-shadow: inset 0 0 35px rgba(65, 137, 232, 0.08);
+}
+
+.mining-panel h2 {
+    color: #8acbff;
+    margin-bottom: 25px;
+}
+
+.mining-panel #clickButton {
+    position: relative;
+    z-index: 1;
+    min-height: 110px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 25px rgba(101, 88, 232, 0.3);
+}
+
+.mining-panel #clickButton:hover {
+    box-shadow: 0 0 35px rgba(101, 88, 232, 0.65);
+}
+/* Атмосфера подземного мира */
+
+.depth-section {
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(65, 137, 232, 0.2),
+            transparent 65%
+        ),
+        linear-gradient(145deg, #263957, #1d2944);
+    border: 1px solid #5275a5;
+    box-shadow: inset 0 0 35px rgba(65, 137, 232, 0.08);
+}
+
+.depth-section h2 {
+    font-size: 23px;
+    text-shadow: 0 0 15px rgba(101, 199, 255, 0.35);
+}
+
+.depth-section h3 {
+    text-shadow: 0 0 15px rgba(69, 230, 154, 0.25);
+}
+
+#depthDescription {
+    padding: 12px;
+    background: rgba(10, 20, 40, 0.25);
+    border-radius: 10px;
+}
+/* Счётчик редких кристаллов */
+
+.rare-crystals {
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #382052, #512b70);
+    border: 1px solid #a855f7;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
+}
+
+.rare-crystals p {
+    color: #dfb9ff;
+    font-weight: bold;
+}
+
+.rare-crystals h3 {
+    color: #c084fc;
+    font-size: 32px;
+    text-shadow: 0 0 15px rgba(192, 132, 252, 0.5);
+}
+/* Улучшенное оформление достижений */
+
+.achievements {
+    padding: 22px;
+    background: linear-gradient(145deg, #202f49, #1a263c);
+    border: 1px solid #405b7e;
+    border-radius: 18px;
+}
+
+.achievements h2 {
+    color: #ffd66b;
+    margin-top: 0;
+    text-shadow: 0 0 12px rgba(255, 214, 107, 0.2);
+}
+
+.achievement {
+    background: linear-gradient(135deg, #293951, #24334a);
+    border: 1px solid #455d7d;
+    border-radius: 13px;
+    padding: 17px;
+}
+
+.achievement.completed {
+    background: linear-gradient(135deg, #1e513e, #234638);
+    border-color: #35d18a;
+    box-shadow: 0 0 15px rgba(53, 209, 138, 0.15);
+    opacity: 1;
+}
+
+.achievement.completed strong {
+    color: #8df0bb;
+}
+/* Карточки улучшений */
+
+.shop {
+    padding: 18px;
+    background: linear-gradient(145deg, #202e47, #1b263b);
+    border: 1px solid #405b7e;
+    border-radius: 16px;
+}
+
+.shop h2 {
+    color: #a9d5ff;
+    margin-top: 0;
+}
+
+.shop .upgrade {
+    background: linear-gradient(135deg, #30425e, #293951);
+    border: 1px solid #415a7b;
+    margin-bottom: 12px;
+    border-radius: 13px;
+}
+
+.shop .upgrade:last-child {
+    margin-bottom: 0;
+}
+
+.shop .upgrade strong {
+    color: #e3efff;
+}
+/* Редкие технологии */
+
+.rare-shop {
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(168, 85, 247, 0.2),
+            transparent 70%
+        ),
+        linear-gradient(145deg, #30204d, #241638);
+}
+
+.rare-shop .upgrade {
+    border-color: #8951b8;
+    box-shadow: inset 0 0 15px rgba(168, 85, 247, 0.05);
+}
+
+.rare-shop .upgrade strong {
+    color: #e4c4ff;
+}
+
+.rare-shop button:not(:disabled) {
+    box-shadow: 0 0 12px rgba(168, 85, 247, 0.2);
+}
+/* Пульсация кнопки добычи */
+
+@keyframes miningGlow {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(101, 88, 232, 0.25);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(101, 88, 232, 0.55);
+    }
+}
+
+.mining-panel #clickButton {
+    animation: miningGlow 2.5s ease-in-out infinite;
+}
+.mining-panel #clickButton:active {
+    animation: none;
+    transform: scale(0.96);
+    filter: brightness(1.3);
+    box-shadow: 0 0 40px rgba(101, 199, 255, 0.8);
+}
+/* Главный счётчик кристаллов */
+
+#balance {
+    text-shadow: 0 0 18px rgba(101, 199, 255, 0.3);
+    transition: text-shadow 0.3s ease;
+}
+
+.game-header:hover #balance {
+    text-shadow: 0 0 28px rgba(101, 199, 255, 0.65);
+}
+@keyframes rareCrystalGlow {
+    0%, 100% {
+        box-shadow: 0 0 12px rgba(168, 85, 247, 0.15);
+    }
+
+    50% {
+        box-shadow: 0 0 28px rgba(168, 85, 247, 0.45);
+    }
+}
+
+.rare-crystals {
+    animation: rareCrystalGlow 3s ease-in-out infinite;
+}
+.rare-shop {
+    border: 1px solid #a855f7;
+    box-shadow:
+        0 0 15px rgba(168, 85, 247, 0.15),
+        inset 0 0 25px rgba(168, 85, 247, 0.05);
+}
+
+.rare-shop h2 {
+    text-shadow: 0 0 15px rgba(192, 132, 252, 0.4);
+}
+
+.rare-shop .upgrade:hover {
+    border-color: #c084fc;
+    box-shadow: 0 0 18px rgba(168, 85, 247, 0.2);
+}
+/* Плавное появление интерфейса */
+
+@keyframes panelAppear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.game-header,
+.left-column,
+.center-column,
+.right-column,
+.achievements {
+    animation: panelAppear 0.7s ease both;
+}
+
+.left-column {
+    animation-delay: 0.1s;
+}
+
+.center-column {
+    animation-delay: 0.2s;
+}
+
+.right-column {
+    animation-delay: 0.3s;
+}
+
+.achievements {
+    animation-delay: 0.4s;
+}
+/* Лёгкий эффект при наведении */
+
+.panel:hover {
+    transform: translateY(-3px);
+    border-color: #6489b8;
+}
+
+.achievement:hover {
+    transform: translateY(-3px);
+}
+
+.upgrade:hover {
+    transform: translateY(-2px);
+}
+/* Эффект свечения кнопки добычи */
+
+.mining-panel #clickButton {
+    background: linear-gradient(135deg, #398ff0, #7855e8);
+    letter-spacing: 1px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.mining-panel #clickButton:hover {
+    background: linear-gradient(135deg, #55a5ff, #906fff);
+}
+/* Новое оформление карточек улучшений */
+
+.shop .upgrade,
+.rare-shop .upgrade {
+    position: relative;
+    padding: 18px;
+    margin-bottom: 14px;
+    border-radius: 14px;
+    transition: all 0.25s ease;
+}
+
+.shop .upgrade:hover {
+    transform: translateY(-3px);
+    border-color: #65c7ff;
+    box-shadow: 0 5px 20px rgba(101, 199, 255, 0.15);
+}
+
+.rare-shop .upgrade:hover {
+    transform: translateY(-3px);
+    border-color: #c084fc;
+    box-shadow: 0 5px 20px rgba(168, 85, 247, 0.2);
+}
+
+.upgrade strong {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+.upgrade p {
+    line-height: 1.5;
+}
+/* Кнопки магазина */
+
+.shop .upgrade button {
+    min-width: 105px;
+    background: linear-gradient(135deg, #278b68, #16ad72);
+    box-shadow: 0 3px 12px rgba(32, 201, 107, 0.15);
+}
+
+.rare-shop .upgrade button {
+    min-width: 105px;
+    background: linear-gradient(135deg, #a855f7, #7137c8);
+    box-shadow: 0 3px 12px rgba(168, 85, 247, 0.2);
+}
+
+.shop .upgrade button:hover,
+.rare-shop .upgrade button:hover {
+    filter: brightness(1.2);
+    transform: scale(1.04);
+}
+
+.shop .upgrade button:disabled,
+.rare-shop .upgrade button:disabled {
+    transform: none;
+    filter: grayscale(0.5);
+    opacity: 0.55;
+}
+/* Стоимость улучшений */
+
+.upgrade p span {
+    color: #8bd3ff;
+    font-weight: bold;
+}
+
+.rare-shop .upgrade p span {
+    color: #d8a5ff;
+}
+
+.upgrade p:last-child {
+    margin-bottom: 0;
+}
+.depth-bonus {
+    color: #65e6ff;
+    font-weight: bold;
+    background: rgba(40, 180, 255, 0.12);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+.final-goal {
+    text-align: center;
+    border: 1px solid #a855f7;
+    background: linear-gradient(135deg, #172554, #3b0764);
+    padding: 20px;
+    border-radius: 14px;
+    margin-top: 15px;
+}
+/* Финальное оформление редких технологий */
+
+.rare-shop {
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(192, 132, 252, 0.22),
+            transparent 65%
+        ),
+        linear-gradient(145deg, #30204d, #1b1230);
+    border: 1px solid rgba(192, 132, 252, 0.65);
+    box-shadow:
+        0 0 25px rgba(168, 85, 247, 0.15),
+        inset 0 0 25px rgba(168, 85, 247, 0.07);
+}
+
+.rare-shop .upgrade {
+    background: linear-gradient(
+        135deg,
+        rgba(75, 42, 105, 0.85),
+        rgba(35, 22, 55, 0.95)
+    );
+    border: 1px solid #8951b8;
+}
+
+.rare-shop .upgrade:hover {
+    transform: translateY(-4px);
+    border-color: #d8a5ff;
+    box-shadow: 0 0 22px rgba(168, 85, 247, 0.3);
+}
+
+.rare-shop .upgrade strong {
+    color: #edcfff;
+    font-size: 16px;
+}
+
+.rare-shop button:not(:disabled) {
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
+}
+/* Победное окно */
+.victory-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 5, 20, 0.9);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.victory-content {
+    background: linear-gradient(145deg, #30205c, #171d3a);
+    border: 2px solid #b44cff;
+    border-radius: 20px;
+    padding: 35px;
+    text-align: center;
+    max-width: 450px;
+    width: 100%;
+    color: white;
+    box-shadow: 0 0 35px #9b35ff;
+    animation: victoryAppear 0.6s ease;
+}
+
+.victory-content h1 {
+    color: #ffd700;
+    font-size: 38px;
+    text-shadow: 0 0 15px gold;
+}
+
+.victory-content h2 {
+    color: #c78cff;
+}
+
+.victory-content p {
+    margin: 15px 0;
+}
+
+#continueGameButton {
+    margin-top: 20px;
+    padding: 14px 30px;
+    background: linear-gradient(90deg, #8b35ff, #bd45ff);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#continueGameButton:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #bd45ff;
+}
+
+@keyframes victoryAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+
+    body {
+        padding: 8px 0;
+        display: block;
+    }
+
+    .game {
+        width: 100%;
+        max-width: 100%;
+        padding: 12px;
+        border-radius: 0;
+    }
+
+    .game-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+    }
+
+    .left-column,
+    .middle-column,
+    .right-column {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .game-header {
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    #balance {
+        font-size: 36px;
+    }
+
+    button {
+        max-width: 100%;
+    }
+}
