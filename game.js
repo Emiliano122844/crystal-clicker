@@ -799,3 +799,85 @@ if (window.Telegram && window.Telegram.WebApp) {
     tg.ready();
     tg.expand();
 }
+// ===== CRYSTAL CLICKER STATISTICS =====
+
+const STATS_URL = "https://kkhnrerolkgadyyyfmkn.supabase.co";
+const STATS_KEY = "sb_publishable_EUP_LEgj63sNQhvLLWLesg_vRM958S3";
+
+let statsSessionId = null;
+
+// Отправка события на сервер статистики
+async function sendStats(action, sessionId = null) {
+    if (!window.Telegram || !window.Telegram.WebApp) return;
+
+    const tg = window.Telegram.WebApp;
+
+    try {
+        const response = await fetch(
+            `${STATS_URL}/functions/v1/track-game-session`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "apikey": STATS_KEY
+                },
+                body: JSON.stringify({
+                    initData: tg.initData,
+                    action: action,
+                    sessionId: sessionId
+                })
+            }
+        );
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            console.error("Ошибка статистики:", result);
+            return null;
+        }
+
+        return result;
+    } catch (error) {
+        console.error("Не удалось отправить статистику:", error);
+        return null;
+    }
+}
+
+// Начало игровой сессии
+async function startStatsSession() {
+    if (statsSessionId) return;
+
+    const result = await sendStats("start");
+
+    if (result && result.success) {
+        statsSessionId = result.sessionId;
+        console.log("Статистика: сессия началась");
+    }
+}
+
+// Завершение игровой сессии
+async function endStatsSession() {
+    if (!statsSessionId) return;
+
+    const sessionId = statsSessionId;
+    statsSessionId = null;
+
+    await sendStats("end", sessionId);
+}
+
+// Запускаем учёт времени
+if (
+    window.Telegram &&
+    window.Telegram.WebApp &&
+    window.Telegram.WebApp.initData
+) {
+    startStatsSession();
+
+    document.addEventListener("visibilitychange", function() {
+        if (document.visibilityState === "hidden") {
+            endStatsSession();
+        } else {
+            startStatsSession();
+        }
+    });
+}
